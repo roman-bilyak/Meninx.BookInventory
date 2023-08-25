@@ -1,0 +1,71 @@
+# ASP.NET Files
+obj/
+bin/
+*.user
+*.suo
+*.cache
+*.dll
+
+# Visual Studio files
+.vscode/
+*.sln
+*.suo
+*.user
+*.csproj
+*.csproj.user
+*.sln
+*.suo
+*.user
+*.suo
+*.pubxml
+*.publishproj
+*_i.c
+*_p.c
+*.pidb
+*.log
+*.vspscc
+*.vssscc
+.vspscc
+*.DotSettings.user
+[Tt]humbs.db
+*.dbmdl
+*.[Pp]ublish.xml
+*.[Pp]ublish.ps1
+[Bb]in
+[Dd]ebug*/
+[Rr]elease*/
+[Aa]rtifacts/
+[Ll]og/
+[Tt]est[Rr]esults/
+[Tt]est[Rr]esults[Rr]eports/
+_UpgradeReport_Files/
+Backup*/
+
+# NuGet
+packages/
+*.nupkg
+nuget.exe
+nuget.targets
+paket.exe
+paket.targets
+ipch/
+*.opendb
+*.closedb
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Windows image file caches
+Thumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Visual Studio Code settings
+.vscode/
