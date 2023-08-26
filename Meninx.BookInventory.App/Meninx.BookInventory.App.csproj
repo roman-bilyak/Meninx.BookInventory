@@ -232,24 +232,28 @@
     </Compile>
     <Compile Include="Pages\AddBook.aspx.cs">
       <DependentUpon>AddBook.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\AddBook.aspx.designer.cs">
       <DependentUpon>AddBook.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\DeleteBook.aspx.cs">
       <DependentUpon>DeleteBook.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\DeleteBook.aspx.designer.cs">
       <DependentUpon>DeleteBook.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\EditBook.aspx.cs">
       <DependentUpon>EditBook.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\EditBook.aspx.designer.cs">
       <DependentUpon>EditBook.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
@@ -264,6 +268,7 @@
     </Compile>
     <Compile Include="Site.Mobile.Master.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
@@ -293,6 +298,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Meninx.BookInventory.Core\Meninx.BookInventory.Core.csproj">
+      <Project>{5B705F4D-9629-4D4A-BB8B-CE77F3CEDB94}</Project>
+      <Name>Meninx.BookInventory.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Meninx.BookInventory.Domain\Meninx.BookInventory.Domain.csproj">
       <Project>{c9394da2-eeda-4491-9fc4-6915dcfd3a6b}</Project>
       <Name>Meninx.BookInventory.Domain</Name>

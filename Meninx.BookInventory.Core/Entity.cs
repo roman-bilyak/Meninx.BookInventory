@@ -7,7 +7,7 @@
     public abstract class Entity<T>
         where T : struct
     {
-        public T Id { get; protected set; }
+        public T Id { get; set; } //TODO:revert set method to protected
 
         protected Entity()
         {

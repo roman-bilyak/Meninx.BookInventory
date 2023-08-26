@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -17,11 +15,39 @@ namespace Meninx.BookInventory.App.Pages
             }
         }
 
+        protected void btnAddBook_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AddBook.aspx");
+        }
+
+        protected void gwBooks_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            string bookId = gwBooks.DataKeys[e.NewEditIndex].Value.ToString();
+            Response.Redirect($"EditBook.aspx?Id={bookId}");
+        }
+
+        protected void gwBooks_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            string bookId = gwBooks.DataKeys[e.RowIndex].Value.ToString();
+            Response.Redirect($"DeleteBook.aspx?Id={bookId}");
+        }
+
+        #region helper methods
+
         private void LoadBooks()
         {
-            //List<Book> books = BookRepository.GetAllBooks(); // Implement this method to retrieve all books
-            //bookRepeater.DataSource = books;
-            bookRepeater.DataBind();
+            List<Book> books = new List<Book>
+            {
+                new Book { Id = Guid.NewGuid(), Title = "Test1" },
+                new Book { Id = Guid.NewGuid(), Title = "Test2" },
+                new Book { Id = Guid.NewGuid(), Title = "Test3" },
+            };
+
+            gwBooks.DataSource = books;
+            gwBooks.DataKeyNames = new string[] { nameof(Book.Id) };
+            gwBooks.DataBind();
         }
+
+        #endregion
     }
 }
