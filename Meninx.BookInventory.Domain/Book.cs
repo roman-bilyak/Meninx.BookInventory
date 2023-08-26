@@ -1,9 +1,9 @@
-﻿namespace Meninx.BookInventory
-{
-    public class Book
-    {
-        public int Id { get; set; }
+﻿using System;
 
+namespace Meninx.BookInventory
+{
+    public class Book : Entity<Guid>
+    {
         public string Title { get; set; }
 
         public string Author { get; set; }
