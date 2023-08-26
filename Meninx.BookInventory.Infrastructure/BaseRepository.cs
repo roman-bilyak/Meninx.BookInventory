@@ -29,17 +29,17 @@ namespace Meninx.BookInventory
 
         public virtual async Task<TEntity> SingleOrDefaultAsync(TId id, CancellationToken cancellationToken)
         {
-            return await _dbContext.Set<TEntity>().ApplySpecification(specification).SingleOrDefaultAsync(cancellationToken);
+            return await _dbContext.Set<TEntity>()/*.ApplySpecification(specification)*/.SingleOrDefaultAsync(cancellationToken);
         }
 
         public virtual async Task<List<TEntity>> ListAsync(ISpecification<TEntity> specification, CancellationToken cancellationToken)
         {
-            return await _dbContext.Set<TEntity>().ApplySpecification(specification).ToListAsync(cancellationToken);
+            return await _dbContext.Set<TEntity>()/*.ApplySpecification(specification)*/.ToListAsync(cancellationToken);
         }
 
         public virtual async Task<int> CountAsync(ISpecification<TEntity> specification, CancellationToken cancellationToken)
         {
-            return await _dbContext.Set<TEntity>().ApplySpecification(specification).CountAsync(cancellationToken);
+            return await _dbContext.Set<TEntity>()/*.ApplySpecification(specification)*/.CountAsync(cancellationToken);
         }
 
         public virtual Task<TEntity> AddAsync(TEntity entity, CancellationToken cancellationToken)
