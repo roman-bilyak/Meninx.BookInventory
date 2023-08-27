@@ -1,4 +1,4 @@
-﻿<%@ Page Title="All Books" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="Meninx.BookInventory.App.Pages.Home" %>
+﻿<%@ Page Title="All Books" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="Meninx.BookInventory.App.Pages.Home" Async="true" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <asp:Button ID="btnAddBook" runat="server" Text="Add Book" OnClick="btnAddBook_Click" />
@@ -16,5 +16,4 @@
             <asp:CommandField ShowEditButton="true" ShowDeleteButton="true" />
         </Columns>
     </asp:GridView>
-
 </asp:Content>

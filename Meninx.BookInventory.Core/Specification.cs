@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 namespace Meninx.BookInventory
 {
 
-    public abstract class Specification<T> : ISpecification<T>
+    public class Specification<T> : ISpecification<T> //TODO: revert class to abstract
     {
         public Specification()
         {

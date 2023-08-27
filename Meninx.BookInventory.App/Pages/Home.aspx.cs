@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -7,11 +7,21 @@ namespace Meninx.BookInventory.App.Pages
 {
     public partial class Home : Page
     {
-        protected void Page_Load(object sender, EventArgs e)
+        private readonly IReadRepository<Book> _bookRepository;
+
+        public Home
+        (
+            IReadRepository<Book> bookRepository
+        )
+        {
+            _bookRepository = bookRepository;
+        }
+
+        protected async void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                LoadBooks();
+                await LoadBooks();
             }
         }
 
@@ -34,16 +44,9 @@ namespace Meninx.BookInventory.App.Pages
 
         #region helper methods
 
-        private void LoadBooks()
+        private async Task LoadBooks()
         {
-            List<Book> books = new List<Book>
-            {
-                new Book { Id = Guid.NewGuid(), Title = "Test1" },
-                new Book { Id = Guid.NewGuid(), Title = "Test2" },
-                new Book { Id = Guid.NewGuid(), Title = "Test3" },
-            };
-
-            gwBooks.DataSource = books;
+            gwBooks.DataSource = await _bookRepository.ListAsync(new Specification<Book>() { }, default);
             gwBooks.DataKeyNames = new string[] { nameof(Book.Id) };
             gwBooks.DataBind();
         }
