@@ -11,5 +11,11 @@ namespace Meninx.BookInventory
         public DbSet<Book> Books { get; set; }
 
         public DbSet<Category> Categories { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Configurations.Add(new BookConfiguration());
+            modelBuilder.Configurations.Add(new CategoryConfiguration());
+        }
     }
 }

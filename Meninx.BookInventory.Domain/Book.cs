@@ -4,6 +4,12 @@ namespace Meninx.BookInventory
 {
     public class Book : Entity<Guid>
     {
+        public const int TitleMaxLength = 255;
+
+        public const int AuthorMaxLength = 255;
+
+        public const int ISBNMaxLength = 20;
+
         public string Title { get; set; }
 
         public string Author { get; set; }
