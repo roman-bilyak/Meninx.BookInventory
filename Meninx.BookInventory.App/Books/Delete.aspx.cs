@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Web.UI;
 
-namespace Meninx.BookInventory.App.Pages
+namespace Meninx.BookInventory.App.Books
 {
-    public partial class DeleteBook : Page
+    public partial class Delete : Page
     {
         private readonly IRepository<Book> _bookRepository;
 
-        public DeleteBook()
+        public Delete()
         {
             _bookRepository = new BookRepository(new BookInventoryDbContext());
         }
@@ -54,7 +54,7 @@ namespace Meninx.BookInventory.App.Pages
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Home.aspx");
+            Response.Redirect("List.aspx");
         }
     }
 }

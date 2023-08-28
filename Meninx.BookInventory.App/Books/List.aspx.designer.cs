@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Meninx.BookInventory.App.Pages
+namespace Meninx.BookInventory.App.Books
 {
 
 
-    public partial class Home
+    public partial class List
     {
 
         /// <summary>

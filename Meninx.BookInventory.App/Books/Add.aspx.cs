@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.UI;
 
-namespace Meninx.BookInventory.App.Pages
+namespace Meninx.BookInventory.App.Books
 {
-    public partial class AddBook : Page
+    public partial class Add : Page
     {
         private readonly IRepository<Book> _bookRepository;
         private readonly IRepository<Category> _categoryRepository;
 
-        public AddBook()
+        public Add()
         {
             _bookRepository = new BookRepository(new BookInventoryDbContext());
             _categoryRepository = new BaseRepository<BookInventoryDbContext, Category>(new BookInventoryDbContext());

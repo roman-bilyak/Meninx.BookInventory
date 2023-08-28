@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Meninx.BookInventory.App.Pages
+namespace Meninx.BookInventory.App.Books
 {
 
 
-    public partial class DeleteBook
+    public partial class Edit
     {
 
         /// <summary>
@@ -24,13 +24,13 @@ namespace Meninx.BookInventory.App.Pages
         protected global::System.Web.UI.WebControls.Label lblTitle;
 
         /// <summary>
-        /// lblTitleValue control.
+        /// txtTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTitleValue;
+        protected global::System.Web.UI.WebControls.TextBox txtTitle;
 
         /// <summary>
         /// lblAuthor control.
@@ -42,13 +42,13 @@ namespace Meninx.BookInventory.App.Pages
         protected global::System.Web.UI.WebControls.Label lblAuthor;
 
         /// <summary>
-        /// lblAuthorValue control.
+        /// txtAuthor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAuthorValue;
+        protected global::System.Web.UI.WebControls.TextBox txtAuthor;
 
         /// <summary>
         /// lblISBN control.
@@ -60,13 +60,13 @@ namespace Meninx.BookInventory.App.Pages
         protected global::System.Web.UI.WebControls.Label lblISBN;
 
         /// <summary>
-        /// lblISBNValue control.
+        /// txtISBN control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblISBNValue;
+        protected global::System.Web.UI.WebControls.TextBox txtISBN;
 
         /// <summary>
         /// lblPublicationYear control.
@@ -78,13 +78,13 @@ namespace Meninx.BookInventory.App.Pages
         protected global::System.Web.UI.WebControls.Label lblPublicationYear;
 
         /// <summary>
-        /// lblPublicationYearValue control.
+        /// txtPublicationYear control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPublicationYearValue;
+        protected global::System.Web.UI.WebControls.TextBox txtPublicationYear;
 
         /// <summary>
         /// lblQuantity control.
@@ -96,13 +96,13 @@ namespace Meninx.BookInventory.App.Pages
         protected global::System.Web.UI.WebControls.Label lblQuantity;
 
         /// <summary>
-        /// lblQuantityValue control.
+        /// txtQuantity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblQuantityValue;
+        protected global::System.Web.UI.WebControls.TextBox txtQuantity;
 
         /// <summary>
         /// lblCategory control.
@@ -114,31 +114,22 @@ namespace Meninx.BookInventory.App.Pages
         protected global::System.Web.UI.WebControls.Label lblCategory;
 
         /// <summary>
-        /// lblCategoryValue control.
+        /// ddlCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCategoryValue;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCategory;
 
         /// <summary>
-        /// btnDelete control.
+        /// btnSave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDelete;
-
-        /// <summary>
-        /// btnCancel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancel;
+        protected global::System.Web.UI.WebControls.Button btnSave;
 
         /// <summary>
         /// lblMessage control.

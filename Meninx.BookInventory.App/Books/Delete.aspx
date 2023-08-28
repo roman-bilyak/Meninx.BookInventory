@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Delete Book" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="DeleteBook.aspx.cs" Inherits="Meninx.BookInventory.App.Pages.DeleteBook" Async="true" %>
+﻿<%@ Page Title="Delete Book" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Delete.aspx.cs" Inherits="Meninx.BookInventory.App.Books.Delete" Async="true" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2>Confirm Deletion</h2>

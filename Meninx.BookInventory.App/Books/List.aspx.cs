@@ -3,13 +3,13 @@ using System.Threading.Tasks;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Meninx.BookInventory.App.Pages
+namespace Meninx.BookInventory.App.Books
 {
-    public partial class Home : Page
+    public partial class List : Page
     {
         private readonly IReadRepository<Book> _bookRepository;
 
-        public Home()
+        public List()
         {
             _bookRepository = new BookRepository(new BookInventoryDbContext());
         }
@@ -24,19 +24,19 @@ namespace Meninx.BookInventory.App.Pages
 
         protected void btnAddBook_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Pages/AddBook.aspx");
+            Response.Redirect("~/Books/Add.aspx");
         }
 
         protected void gwBooks_RowEditing(object sender, GridViewEditEventArgs e)
         {
             string bookId = gwBooks.DataKeys[e.NewEditIndex].Value.ToString();
-            Response.Redirect($"~/Pages/EditBook.aspx?Id={bookId}");
+            Response.Redirect($"~/Books/Edit.aspx?Id={bookId}");
         }
 
         protected void gwBooks_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             string bookId = gwBooks.DataKeys[e.RowIndex].Value.ToString();
-            Response.Redirect($"~/Pages/DeleteBook.aspx?Id={bookId}");
+            Response.Redirect($"~/Books/Delete.aspx?Id={bookId}");
         }
 
         #region helper methods
