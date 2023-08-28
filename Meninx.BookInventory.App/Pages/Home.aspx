@@ -12,7 +12,6 @@
             <asp:BoundField DataField="ISBN" HeaderText="ISBN" />
             <asp:BoundField DataField="PublicationYear" HeaderText="Publication Year" />
             <asp:BoundField DataField="Quantity" HeaderText="Quantity" />
-            <asp:BoundField DataField="Category" HeaderText="Category" />
             <asp:CommandField ShowEditButton="true" ShowDeleteButton="true" />
         </Columns>
     </asp:GridView>
