@@ -56,6 +56,10 @@
     <Compile Include="Entities\BookConfiguration.cs" />
     <Compile Include="BookRepository.cs" />
     <Compile Include="Entities\CategoryConfiguration.cs" />
+    <Compile Include="Migrations\202308281054495_Initial.cs" />
+    <Compile Include="Migrations\202308281054495_Initial.designer.cs">
+      <DependentUpon>202308281054495_Initial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -72,6 +76,11 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202308281054495_Initial.resx">
+      <DependentUpon>202308281054495_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
