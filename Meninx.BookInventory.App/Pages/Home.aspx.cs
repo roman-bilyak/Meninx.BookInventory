@@ -9,12 +9,9 @@ namespace Meninx.BookInventory.App.Pages
     {
         private readonly IReadRepository<Book> _bookRepository;
 
-        public Home
-        (
-            IReadRepository<Book> bookRepository
-        )
+        public Home()
         {
-            _bookRepository = bookRepository;
+            _bookRepository = new BookRepository(new BookInventoryDbContext());
         }
 
         protected async void Page_Load(object sender, EventArgs e)

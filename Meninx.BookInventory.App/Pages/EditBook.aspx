@@ -26,8 +26,8 @@
             <td><asp:Label ID="lblCategory" runat="server" Text="Category" AssociatedControlID="ddlCategory" /></td>
             <td>
                 <asp:DropDownList ID="ddlCategory" runat="server">
-                    <asp:ListItem Text="Fiction" Value="Fiction" />
-                    <asp:ListItem Text="Non-Fiction" Value="Non-Fiction" />
+                    <asp:ListItem Text="Fiction" Value="5c365c44-4007-4473-b22b-5b88358bf475" />
+                    <asp:ListItem Text="Non-Fiction" Value="927c8608-fe6b-4a81-856d-7bb0e8986794" />
                 </asp:DropDownList>
             </td>
         </tr>

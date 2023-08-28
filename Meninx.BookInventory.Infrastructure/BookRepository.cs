@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Meninx.BookInventory
 {
-    internal class BookRepository : BaseRepository<BookInventoryDbContext, Book>
+    public class BookRepository : BaseRepository<BookInventoryDbContext, Book>
     {
         public BookRepository(BookInventoryDbContext dbContext) : base(dbContext)
         {

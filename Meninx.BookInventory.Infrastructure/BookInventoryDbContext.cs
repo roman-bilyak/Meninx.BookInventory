@@ -2,7 +2,7 @@
 
 namespace Meninx.BookInventory
 {
-    internal class BookInventoryDbContext : DbContext
+    public class BookInventoryDbContext : DbContext
     {
         public BookInventoryDbContext() : base("name=BookInventoryDbContext")
         {

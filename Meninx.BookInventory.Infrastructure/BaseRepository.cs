@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Meninx.BookInventory
 {
-    internal class BaseRepository<TDbContext, TEntity> : BaseRepository<TDbContext, TEntity, Guid>, IRepository<TEntity>
+    public class BaseRepository<TDbContext, TEntity> : BaseRepository<TDbContext, TEntity, Guid>, IRepository<TEntity>
         where TDbContext : DbContext
         where TEntity : Entity<Guid>
     {
@@ -15,7 +15,7 @@ namespace Meninx.BookInventory
         }
     }
 
-    internal class BaseRepository<TDbContext, TEntity, TId> : IRepository<TEntity, TId>
+    public class BaseRepository<TDbContext, TEntity, TId> : IRepository<TEntity, TId>
         where TDbContext : DbContext
         where TEntity : Entity<TId>
         where TId : struct

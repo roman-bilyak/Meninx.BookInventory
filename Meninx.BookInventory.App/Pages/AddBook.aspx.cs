@@ -7,12 +7,9 @@ namespace Meninx.BookInventory.App.Pages
     {
         private readonly IRepository<Book> _bookRepository;
 
-        public AddBook
-        (
-            IRepository<Book> bookRepository
-        )
+        public AddBook()
         {
-            _bookRepository = bookRepository;
+            _bookRepository = new BookRepository(new BookInventoryDbContext());
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -26,6 +23,7 @@ namespace Meninx.BookInventory.App.Pages
             {
                 Book book = new Book
                 {
+                    Id = Guid.NewGuid(),
                     Title = txtTitle.Text,
                     Author = txtAuthor.Text,
                     ISBN = txtISBN.Text,
