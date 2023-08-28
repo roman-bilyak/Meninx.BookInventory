@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data.Entity.Migrations;
-using System.Linq.Expressions;
 
 namespace Meninx.BookInventory.Migrations
 {
@@ -15,21 +14,21 @@ namespace Meninx.BookInventory.Migrations
         {
             Category dotnetCategory = new Category
             {
-                Id = Guid.Parse("b29c0c4d-94c1-4f5a-8c3b-605ae17c8a7f"),
+                Id = Guid.Parse("a29c0c4d-94c1-4f5a-8c3b-605ae17c8a7f"),
                 Name = ".NET",
                 Description = "Books related to .NET technologies"
             };
 
             Category aspnetCategory = new Category
             {
-                Id = Guid.Parse("a8d0b7e2-5a0e-48f2-9f77-1f3f2120e3c9"),
+                Id = Guid.Parse("b8d0b7e2-5a0e-48f2-9f77-1f3f2120e3c9"),
                 Name = "ASP.NET",
                 Description = "Books related to ASP.NET technologies"
             };
 
             Category mssqlCategory = new Category
             {
-                Id = Guid.Parse("f3146b12-df9d-4c9c-ae82-8399e286bc8a"),
+                Id = Guid.Parse("c3146b12-df9d-4c9c-ae82-8399e286bc8a"),
                 Name = "MS SQL",
                 Description = "Books related to Microsoft SQL Server"
             };

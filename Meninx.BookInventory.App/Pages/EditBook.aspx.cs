@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Web.UI;
 
 namespace Meninx.BookInventory.App.Pages
@@ -6,32 +8,22 @@ namespace Meninx.BookInventory.App.Pages
     public partial class EditBook : Page
     {
         private readonly IRepository<Book> _bookRepository;
+        private readonly IRepository<Category> _categoryRepository;
 
         public EditBook()
         {
             _bookRepository = new BookRepository(new BookInventoryDbContext());
+            _categoryRepository = new BaseRepository<BookInventoryDbContext, Category>(new BookInventoryDbContext());
         }
 
         protected async void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                Guid bookId = Guid.Parse(Request.QueryString["id"]);
-                Book book = await _bookRepository.SingleOrDefaultAsync(bookId, default);
+                await LoadCategories();
 
-                if (book != null)
-                {
-                    txtTitle.Text = book.Title;
-                    txtAuthor.Text = book.Author;
-                    txtISBN.Text = book.ISBN;
-                    txtPublicationYear.Text = book.PublicationYear.ToString();
-                    txtQuantity.Text = book.Quantity.ToString();
-                    ddlCategory.SelectedValue = book.CategoryId.ToString();
-                }
-                else
-                {
-                    Response.Redirect("Home.aspx");
-                }
+                Guid bookId = Guid.Parse(Request.QueryString["id"]);
+                await LoadBook(bookId);
             }
         }
 
@@ -53,5 +45,38 @@ namespace Meninx.BookInventory.App.Pages
                 lblMessage.Text = "Book updated successfully!";
             }
         }
+
+        #region helper methods
+
+        private async Task LoadCategories()
+        {
+            List<Category> categories = await _categoryRepository.ListAsync(new Specification<Category>() { }, default);
+
+            ddlCategory.DataSource = categories;
+
+            ddlCategory.DataTextField = nameof(Category.Name);
+            ddlCategory.DataValueField = nameof(Category.Id);
+
+            ddlCategory.DataBind();
+        }
+
+        private async Task LoadBook(Guid id)
+        {
+            Book book = await _bookRepository.SingleOrDefaultAsync(id, default);
+
+            if (book == null)
+            {
+                throw new Exception("Book not found");
+            }
+
+            txtTitle.Text = book.Title;
+            txtAuthor.Text = book.Author;
+            txtISBN.Text = book.ISBN;
+            txtPublicationYear.Text = book.PublicationYear.ToString();
+            txtQuantity.Text = book.Quantity.ToString();
+            ddlCategory.SelectedValue = book.CategoryId.ToString();
+        }
+
+        #endregion
     }
 }

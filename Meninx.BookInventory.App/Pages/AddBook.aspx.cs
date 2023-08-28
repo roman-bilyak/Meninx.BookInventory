@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Web.UI;
 
 namespace Meninx.BookInventory.App.Pages
@@ -6,15 +8,20 @@ namespace Meninx.BookInventory.App.Pages
     public partial class AddBook : Page
     {
         private readonly IRepository<Book> _bookRepository;
+        private readonly IRepository<Category> _categoryRepository;
 
         public AddBook()
         {
             _bookRepository = new BookRepository(new BookInventoryDbContext());
+            _categoryRepository = new BaseRepository<BookInventoryDbContext, Category>(new BookInventoryDbContext());
         }
 
-        protected void Page_Load(object sender, EventArgs e)
+        protected async void Page_Load(object sender, EventArgs e)
         {
-            //TODO: load list of categories
+            if (!IsPostBack)
+            {
+                await LoadCategories();
+            }
         }
 
         protected async void btnSave_Click(object sender, EventArgs e)
@@ -46,5 +53,21 @@ namespace Meninx.BookInventory.App.Pages
                 lblMessage.CssClass = "error-message";
             }
         }
+
+        #region helper methods
+
+        private async Task LoadCategories()
+        {
+            List<Category> categories = await _categoryRepository.ListAsync(new Specification<Category>() { }, default);
+
+            ddlCategory.DataSource = categories;
+
+            ddlCategory.DataTextField = nameof(Category.Name);
+            ddlCategory.DataValueField = nameof(Category.Id);
+
+            ddlCategory.DataBind();
+        }
+
+        #endregion
     }
 }
