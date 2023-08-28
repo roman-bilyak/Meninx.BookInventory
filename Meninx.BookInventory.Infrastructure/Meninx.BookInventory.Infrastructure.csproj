@@ -60,9 +60,17 @@
     <Compile Include="Migrations\202308281054495_Initial.designer.cs">
       <DependentUpon>202308281054495_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202308281105077_spGetBooks.cs" />
-    <Compile Include="Migrations\202308281105077_spGetBooks.designer.cs">
-      <DependentUpon>202308281105077_spGetBooks.cs</DependentUpon>
+    <Compile Include="Migrations\202308281130527_AddFullTextCatalog.cs" />
+    <Compile Include="Migrations\202308281130527_AddFullTextCatalog.designer.cs">
+      <DependentUpon>202308281130527_AddFullTextCatalog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308281254301_AddFullTextIndex.cs" />
+    <Compile Include="Migrations\202308281254301_AddFullTextIndex.designer.cs">
+      <DependentUpon>202308281254301_AddFullTextIndex.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308281313325_AddGetBooksStoredProcedure.cs" />
+    <Compile Include="Migrations\202308281313325_AddGetBooksStoredProcedure.designer.cs">
+      <DependentUpon>202308281313325_AddGetBooksStoredProcedure.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -85,8 +93,14 @@
     <EmbeddedResource Include="Migrations\202308281054495_Initial.resx">
       <DependentUpon>202308281054495_Initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202308281105077_spGetBooks.resx">
-      <DependentUpon>202308281105077_spGetBooks.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202308281130527_AddFullTextCatalog.resx">
+      <DependentUpon>202308281130527_AddFullTextCatalog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308281254301_AddFullTextIndex.resx">
+      <DependentUpon>202308281254301_AddFullTextIndex.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308281313325_AddGetBooksStoredProcedure.resx">
+      <DependentUpon>202308281313325_AddGetBooksStoredProcedure.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
