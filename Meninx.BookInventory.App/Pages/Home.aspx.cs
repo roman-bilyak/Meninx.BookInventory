@@ -24,19 +24,19 @@ namespace Meninx.BookInventory.App.Pages
 
         protected void btnAddBook_Click(object sender, EventArgs e)
         {
-            Response.Redirect("AddBook.aspx");
+            Response.Redirect("~/Pages/AddBook.aspx");
         }
 
         protected void gwBooks_RowEditing(object sender, GridViewEditEventArgs e)
         {
             string bookId = gwBooks.DataKeys[e.NewEditIndex].Value.ToString();
-            Response.Redirect($"EditBook.aspx?Id={bookId}");
+            Response.Redirect($"~/Pages/EditBook.aspx?Id={bookId}");
         }
 
         protected void gwBooks_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             string bookId = gwBooks.DataKeys[e.RowIndex].Value.ToString();
-            Response.Redirect($"DeleteBook.aspx?Id={bookId}");
+            Response.Redirect($"~/Pages/DeleteBook.aspx?Id={bookId}");
         }
 
         #region helper methods
