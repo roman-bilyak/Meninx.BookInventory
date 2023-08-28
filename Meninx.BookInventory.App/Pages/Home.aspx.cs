@@ -43,7 +43,7 @@ namespace Meninx.BookInventory.App.Pages
 
         private async Task LoadBooks()
         {
-            gwBooks.DataSource = await _bookRepository.ListAsync(new Specification<Book>() { }, default);
+            gwBooks.DataSource = await _bookRepository.ListAsync(new Specification<Book>() { });
             gwBooks.DataKeyNames = new string[] { nameof(Book.Id) };
             gwBooks.DataBind();
         }

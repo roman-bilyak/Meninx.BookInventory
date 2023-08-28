@@ -14,10 +14,8 @@ namespace Meninx.BookInventory
         where TEntity : Entity<TId>
         where TId : struct
     {
-        Task<TEntity> SingleOrDefaultAsync(TId id, CancellationToken cancellationToken);
+        Task<TEntity> SingleOrDefaultAsync(TId id, CancellationToken cancellationToken = default);
 
-        Task<List<TEntity>> ListAsync(ISpecification<TEntity> specification, CancellationToken cancellationToken);
-
-        Task<int> CountAsync(ISpecification<TEntity> specification, CancellationToken cancellationToken);
+        Task<List<TEntity>> ListAsync(ISpecification<TEntity> specification, CancellationToken cancellationToken = default);
     }
 }

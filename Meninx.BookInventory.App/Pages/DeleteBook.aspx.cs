@@ -17,7 +17,7 @@ namespace Meninx.BookInventory.App.Pages
             if (!IsPostBack)
             {
                 Guid bookId = Guid.Parse(Request.QueryString["id"]);
-                Book book = await _bookRepository.SingleOrDefaultAsync(bookId, default);
+                Book book = await _bookRepository.SingleOrDefaultAsync(bookId);
                 if (book != null)
                 {
                     lblTitleValue.Text = book.Title;
@@ -37,12 +37,12 @@ namespace Meninx.BookInventory.App.Pages
         protected async void btnDelete_Click(object sender, EventArgs e)
         {
             Guid bookId = Guid.Parse(Request.QueryString["id"]);
-            Book book = await _bookRepository.SingleOrDefaultAsync(bookId, default);
+            Book book = await _bookRepository.SingleOrDefaultAsync(bookId);
 
             if (book != null)
             {
-                await _bookRepository.DeleteAsync(book, default);
-                await _bookRepository.SaveChangesAsync(default);
+                await _bookRepository.DeleteAsync(book);
+                await _bookRepository.SaveChangesAsync();
 
                 lblMessage.Text = "Book deleted successfully!";
             }

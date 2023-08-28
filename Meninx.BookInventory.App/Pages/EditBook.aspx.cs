@@ -30,7 +30,7 @@ namespace Meninx.BookInventory.App.Pages
         protected async void btnSave_Click(object sender, EventArgs e)
         {
             Guid bookId = Guid.Parse(Request.QueryString["id"]);
-            Book book = await _bookRepository.SingleOrDefaultAsync(bookId, default);
+            Book book = await _bookRepository.SingleOrDefaultAsync(bookId);
             if (book != null)
             {
                 book.Title = txtTitle.Text;
@@ -40,7 +40,8 @@ namespace Meninx.BookInventory.App.Pages
                 book.Quantity = Convert.ToInt32(txtQuantity.Text);
                 book.CategoryId = Guid.Parse(ddlCategory.SelectedValue);
 
-                await _bookRepository.UpdateAsync(book, default);
+                await _bookRepository.UpdateAsync(book);
+                await _bookRepository.SaveChangesAsync();
 
                 lblMessage.Text = "Book updated successfully!";
             }
@@ -50,7 +51,7 @@ namespace Meninx.BookInventory.App.Pages
 
         private async Task LoadCategories()
         {
-            List<Category> categories = await _categoryRepository.ListAsync(new Specification<Category>() { }, default);
+            List<Category> categories = await _categoryRepository.ListAsync(new Specification<Category>() { });
 
             ddlCategory.DataSource = categories;
 
@@ -62,7 +63,7 @@ namespace Meninx.BookInventory.App.Pages
 
         private async Task LoadBook(Guid id)
         {
-            Book book = await _bookRepository.SingleOrDefaultAsync(id, default);
+            Book book = await _bookRepository.SingleOrDefaultAsync(id);
 
             if (book == null)
             {

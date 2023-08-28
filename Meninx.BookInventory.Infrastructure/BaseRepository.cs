@@ -49,11 +49,6 @@ namespace Meninx.BookInventory
             return await _dbContext.Set<TEntity>()/*.ApplySpecification(specification)*/.ToListAsync(cancellationToken);
         }
 
-        public virtual async Task<int> CountAsync(ISpecification<TEntity> specification, CancellationToken cancellationToken)
-        {
-            return await _dbContext.Set<TEntity>()/*.ApplySpecification(specification)*/.CountAsync(cancellationToken);
-        }
-
         public virtual Task<TEntity> AddAsync(TEntity entity, CancellationToken cancellationToken)
         {
             _dbContext.Set<TEntity>().Add(entity);

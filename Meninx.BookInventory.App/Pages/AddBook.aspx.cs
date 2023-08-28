@@ -39,8 +39,8 @@ namespace Meninx.BookInventory.App.Pages
                     CategoryId = Guid.Parse(ddlCategory.SelectedValue)
                 };
 
-                await _bookRepository.AddAsync(book, default);
-                await _bookRepository.SaveChangesAsync(default);
+                await _bookRepository.AddAsync(book);
+                await _bookRepository.SaveChangesAsync();
 
                 lblMessage.Text = "Book added successfully!";
                 lblMessage.CssClass = "success-message";
@@ -58,7 +58,7 @@ namespace Meninx.BookInventory.App.Pages
 
         private async Task LoadCategories()
         {
-            List<Category> categories = await _categoryRepository.ListAsync(new Specification<Category>() { }, default);
+            List<Category> categories = await _categoryRepository.ListAsync(new Specification<Category>() { });
 
             ddlCategory.DataSource = categories;
 

@@ -13,12 +13,12 @@ namespace Meninx.BookInventory
         where TEntity : Entity<TKey>
         where TKey : struct
     {
-        Task<TEntity> AddAsync(TEntity entity, CancellationToken cancellationToken);
+        Task<TEntity> AddAsync(TEntity entity, CancellationToken cancellationToken = default);
 
-        Task<TEntity> UpdateAsync(TEntity entity, CancellationToken cancellationToken);
+        Task<TEntity> UpdateAsync(TEntity entity, CancellationToken cancellationToken = default);
 
-        Task DeleteAsync(TEntity entity, CancellationToken cancellationToken);
+        Task DeleteAsync(TEntity entity, CancellationToken cancellationToken = default);
 
-        Task SaveChangesAsync(CancellationToken cancellationToken);
+        Task SaveChangesAsync(CancellationToken cancellationToken = default);
     }
 }
