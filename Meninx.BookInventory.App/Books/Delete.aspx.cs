@@ -29,7 +29,7 @@ namespace Meninx.BookInventory.App.Books
                 }
                 else
                 {
-                    Response.Redirect("Home.aspx");
+                    Response.Redirect("List.aspx");
                 }
             }
         }
@@ -48,7 +48,7 @@ namespace Meninx.BookInventory.App.Books
             }
             else
             {
-                Response.Redirect("Home.aspx");
+                Response.Redirect("List.aspx");
             }
         }
 

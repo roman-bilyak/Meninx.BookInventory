@@ -46,8 +46,8 @@
                 </button>
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/">Books</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Pages/Categories">Categories</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Books/List">Books</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Categories/List">Categories</a></li>
                     </ul>
                 </div>
             </div>

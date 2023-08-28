@@ -7,11 +7,13 @@ namespace Meninx.BookInventory.App
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
-            var settings = new FriendlyUrlSettings();
-            settings.AutoRedirectMode = RedirectMode.Permanent;
+            FriendlyUrlSettings settings = new FriendlyUrlSettings
+            {
+                AutoRedirectMode = RedirectMode.Permanent
+            };
             routes.EnableFriendlyUrls(settings);
 
-            routes.MapPageRoute("DefaultRoute", "", "~/Books/List.aspx");
+            routes.MapPageRoute("DefaultRoute", "", "~/Default.aspx");
             routes.MapPageRoute("BooksRoute", "Books/{pageName}", "~/Books/{pageName}.aspx");
             routes.MapPageRoute("CategoriesRoute", "Categories/{pageName}", "~/Categories/{pageName}.aspx");
         }
