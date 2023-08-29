@@ -22,9 +22,14 @@ namespace Meninx.BookInventory.App.Controllers
         }
 
         // GET: api/books
-        public async Task<IHttpActionResult> GetBooksAsync()
+        public async Task<IHttpActionResult> GetBooksAsync(string query, int limit, int offset, string sortBy, string sortOrder)
         {
-            List<Book> books = await _bookRepository.ListAsync(new Specification<Book>());
+            ISpecification<Book> specification = new Specification<Book>()
+                .ApplyQuery(query)
+                .ApplyPaging(limit, offset)
+                .ApplySorting(sortBy, sortOrder);
+
+            List<Book> books = await _bookRepository.ListAsync(specification);
 
             IEnumerable<BookDto> result = books.Select(x => new BookDto
             {

@@ -11,5 +11,11 @@
         string SortBy { get; }
 
         string SortOrder { get; }
+
+        ISpecification<T> ApplyQuery(string query);
+
+        ISpecification<T> ApplyPaging(int limit, int offset);
+
+        ISpecification<T> ApplySorting(string sortBy, string sortOrder);
     }
 }
