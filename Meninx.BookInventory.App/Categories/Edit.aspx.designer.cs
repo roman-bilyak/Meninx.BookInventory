@@ -15,6 +15,15 @@ namespace Meninx.BookInventory.App.Categories
     {
 
         /// <summary>
+        /// vsSave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary vsSave;
+
+        /// <summary>
         /// txtName control.
         /// </summary>
         /// <remarks>
@@ -22,6 +31,24 @@ namespace Meninx.BookInventory.App.Categories
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtName;
+
+        /// <summary>
+        /// txtNameRequiredFieldValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator txtNameRequiredFieldValidator;
+
+        /// <summary>
+        /// txtNameRegularExpressionValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator txtNameRegularExpressionValidator;
 
         /// <summary>
         /// txtDescription control.
@@ -33,13 +60,13 @@ namespace Meninx.BookInventory.App.Categories
         protected global::System.Web.UI.WebControls.TextBox txtDescription;
 
         /// <summary>
-        /// lblMessage control.
+        /// txtDescriptionRegularExpressionValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMessage;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator txtDescriptionRegularExpressionValidator;
 
         /// <summary>
         /// btnSave control.

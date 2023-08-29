@@ -15,6 +15,15 @@ namespace Meninx.BookInventory.App.Books
     {
 
         /// <summary>
+        /// vsSave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary vsSave;
+
+        /// <summary>
         /// txtTitle control.
         /// </summary>
         /// <remarks>
@@ -22,6 +31,24 @@ namespace Meninx.BookInventory.App.Books
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTitle;
+
+        /// <summary>
+        /// txtTitleRequiredFieldValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator txtTitleRequiredFieldValidator;
+
+        /// <summary>
+        /// txtTitleRegularExpressionValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator txtTitleRegularExpressionValidator;
 
         /// <summary>
         /// txtAuthor control.
@@ -33,6 +60,24 @@ namespace Meninx.BookInventory.App.Books
         protected global::System.Web.UI.WebControls.TextBox txtAuthor;
 
         /// <summary>
+        /// txtAuthorRequiredFieldValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator txtAuthorRequiredFieldValidator;
+
+        /// <summary>
+        /// txtAuthorRegularExpressionValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator txtAuthorRegularExpressionValidator;
+
+        /// <summary>
         /// txtISBN control.
         /// </summary>
         /// <remarks>
@@ -40,6 +85,24 @@ namespace Meninx.BookInventory.App.Books
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtISBN;
+
+        /// <summary>
+        /// txtISBNRequiredFieldValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator txtISBNRequiredFieldValidator;
+
+        /// <summary>
+        /// txtISBNRegularExpressionValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator txtISBNRegularExpressionValidator;
 
         /// <summary>
         /// txtPublicationYear control.
@@ -51,6 +114,24 @@ namespace Meninx.BookInventory.App.Books
         protected global::System.Web.UI.WebControls.TextBox txtPublicationYear;
 
         /// <summary>
+        /// txtPublicationYearRequiredFieldValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator txtPublicationYearRequiredFieldValidator;
+
+        /// <summary>
+        /// txtPublicationYearRegularExpressionValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator txtPublicationYearRegularExpressionValidator;
+
+        /// <summary>
         /// txtQuantity control.
         /// </summary>
         /// <remarks>
@@ -58,6 +139,24 @@ namespace Meninx.BookInventory.App.Books
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtQuantity;
+
+        /// <summary>
+        /// txtQuantityRequiredFieldValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator txtQuantityRequiredFieldValidator;
+
+        /// <summary>
+        /// txtQuantityRegularExpressionValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator txtQuantityRegularExpressionValidator;
 
         /// <summary>
         /// ddlCategory control.
@@ -69,13 +168,13 @@ namespace Meninx.BookInventory.App.Books
         protected global::System.Web.UI.WebControls.DropDownList ddlCategory;
 
         /// <summary>
-        /// lblMessage control.
+        /// ddlCategoryRequiredFieldValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMessage;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator ddlCategoryRequiredFieldValidator;
 
         /// <summary>
         /// btnSave control.

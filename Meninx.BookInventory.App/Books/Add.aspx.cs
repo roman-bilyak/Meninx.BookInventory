@@ -50,7 +50,7 @@ namespace Meninx.BookInventory.App.Books
             }
             catch (Exception ex)
             {
-                lblMessage.Text = "Error adding the book: " + ex.Message;
+                vsSave.HeaderText = ex.Message;
             }
         }
 

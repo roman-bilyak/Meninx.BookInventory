@@ -33,7 +33,7 @@ namespace Meninx.BookInventory.App.Categories
             }
             catch (Exception ex)
             {
-                lblMessage.Text = "Error adding the category: " + ex.Message;
+                vsSave.HeaderText = ex.Message;
             }
         }
 

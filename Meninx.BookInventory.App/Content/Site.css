@@ -13,6 +13,16 @@
     }
 }
 
+/* Style for buttons */
+.button {
+    padding: 5px 20px;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 2px;
+}
+
 /* Style for search */
 .search-bar {
     display: flex;
@@ -42,7 +52,7 @@
 
     .search-input,
     .button {
-        margin: 0px;
+        margin: 5px 0px;
     }
 }
 
@@ -110,16 +120,6 @@
     color: red;
     font-size: 16px;
     margin: 5px 0px;
-}
-
-/* Style for buttons */
-.button {
-    padding: 5px 20px;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin: 2px;
 }
 
 .search-button {

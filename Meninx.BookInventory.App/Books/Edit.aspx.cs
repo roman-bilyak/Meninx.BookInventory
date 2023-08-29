@@ -64,7 +64,7 @@ namespace Meninx.BookInventory.App.Books
             }
             catch (Exception ex)
             {
-                lblMessage.Text = "Error editing the book: " + ex.Message;
+                vsSave.HeaderText = ex.Message;
             }
         }
 
