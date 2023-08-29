@@ -1,6 +1,4 @@
-﻿using Swashbuckle.Application;
-using System;
-using System.IO;
+﻿using System;
 using System.Web;
 using System.Web.Http;
 using System.Web.Optimization;
@@ -19,6 +17,15 @@ namespace Meninx.BookInventory.App
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             SwaggerConfig.Register();
             InfrastructureConfig.Configure();
+        }
+
+        void Application_Error(object sender, EventArgs e)
+        {
+            Exception lastError = Server.GetLastError();
+            Server.ClearError();
+
+            Session["ErrorMessage"] = (lastError.InnerException ?? lastError).Message;
+            Response.Redirect("~/Error.aspx");
         }
     }
 }
