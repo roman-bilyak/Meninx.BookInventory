@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Swashbuckle.Application;
+using System;
+using System.IO;
 using System.Web;
 using System.Web.Http;
 using System.Web.Optimization;
@@ -15,6 +17,7 @@ namespace Meninx.BookInventory.App
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            SwaggerConfig.Register();
         }
     }
 }

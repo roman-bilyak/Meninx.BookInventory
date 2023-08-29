@@ -48,6 +48,7 @@
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Books/List">Books</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Categories/List">Categories</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/swagger">API</a></li>
                     </ul>
                 </div>
             </div>
