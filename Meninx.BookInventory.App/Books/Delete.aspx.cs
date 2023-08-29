@@ -19,39 +19,50 @@ namespace Meninx.BookInventory.App.Books
         {
             if (!IsPostBack)
             {
-                Guid bookId = Guid.Parse(Request.QueryString["id"]);
+                if (!Guid.TryParse(Request.QueryString["id"], out Guid bookId))
+                {
+                    throw new Exception("Book not found");
+                }
+
                 Book book = await _bookRepository.SingleOrDefaultAsync(bookId);
-                if (book != null)
+                if (book == null)
                 {
-                    lblTitleValue.Text = book.Title;
-                    lblAuthorValue.Text = book.Author;
-                    lblISBNValue.Text = book.ISBN;
-                    lblPublicationYearValue.Text = book.PublicationYear.ToString();
-                    lblQuantityValue.Text = book.Quantity.ToString();
-                    lblCategoryValue.Text = book.Category.Name;
+                    throw new Exception("Book not found");
                 }
-                else
-                {
-                    Response.Redirect("List.aspx");
-                }
+
+                lblTitleValue.Text = book.Title;
+                lblAuthorValue.Text = book.Author;
+                lblISBNValue.Text = book.ISBN;
+                lblPublicationYearValue.Text = book.PublicationYear.ToString();
+                lblQuantityValue.Text = book.Quantity.ToString();
+                lblCategoryValue.Text = book.Category.Name;
+
             }
         }
 
         protected async void btnDelete_Click(object sender, EventArgs e)
         {
-            Guid bookId = Guid.Parse(Request.QueryString["id"]);
-            Book book = await _bookRepository.SingleOrDefaultAsync(bookId);
+            if (!Guid.TryParse(Request.QueryString["id"], out Guid bookId))
+            {
+                throw new Exception("Book not found");
+            }
 
-            if (book != null)
+            Book book = await _bookRepository.SingleOrDefaultAsync(bookId);
+            if (book == null)
+            {
+                throw new Exception("Book not found");
+            }
+
+            try
             {
                 await _bookRepository.DeleteAsync(book);
                 await _bookRepository.SaveChangesAsync();
 
-                lblMessage.Text = "Book deleted successfully!";
-            }
-            else
-            {
                 Response.Redirect("List.aspx");
+            }
+            catch (Exception ex)
+            {
+                lblMessage.Text = "Error deleting the book: " + ex.Message;
             }
         }
 

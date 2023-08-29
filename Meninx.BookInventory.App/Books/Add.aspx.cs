@@ -46,16 +46,17 @@ namespace Meninx.BookInventory.App.Books
                 await _bookRepository.AddAsync(book);
                 await _bookRepository.SaveChangesAsync();
 
-                lblMessage.Text = "Book added successfully!";
-                lblMessage.CssClass = "success-message";
-
-                //TODO: Redirect to Home Page or perform other actions
+                Response.Redirect("~/Books/List.aspx");
             }
             catch (Exception ex)
             {
                 lblMessage.Text = "Error adding the book: " + ex.Message;
-                lblMessage.CssClass = "error-message";
             }
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Books/List.aspx");
         }
 
         #region helper methods

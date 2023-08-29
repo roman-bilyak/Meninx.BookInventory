@@ -15,15 +15,6 @@ namespace Meninx.BookInventory.App.Books
     {
 
         /// <summary>
-        /// lblTitle control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTitle;
-
-        /// <summary>
         /// lblTitleValue control.
         /// </summary>
         /// <remarks>
@@ -31,15 +22,6 @@ namespace Meninx.BookInventory.App.Books
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTitleValue;
-
-        /// <summary>
-        /// lblAuthor control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAuthor;
 
         /// <summary>
         /// lblAuthorValue control.
@@ -51,15 +33,6 @@ namespace Meninx.BookInventory.App.Books
         protected global::System.Web.UI.WebControls.Label lblAuthorValue;
 
         /// <summary>
-        /// lblISBN control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblISBN;
-
-        /// <summary>
         /// lblISBNValue control.
         /// </summary>
         /// <remarks>
@@ -67,15 +40,6 @@ namespace Meninx.BookInventory.App.Books
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblISBNValue;
-
-        /// <summary>
-        /// lblPublicationYear control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPublicationYear;
 
         /// <summary>
         /// lblPublicationYearValue control.
@@ -87,15 +51,6 @@ namespace Meninx.BookInventory.App.Books
         protected global::System.Web.UI.WebControls.Label lblPublicationYearValue;
 
         /// <summary>
-        /// lblQuantity control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblQuantity;
-
-        /// <summary>
         /// lblQuantityValue control.
         /// </summary>
         /// <remarks>
@@ -105,15 +60,6 @@ namespace Meninx.BookInventory.App.Books
         protected global::System.Web.UI.WebControls.Label lblQuantityValue;
 
         /// <summary>
-        /// lblCategory control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCategory;
-
-        /// <summary>
         /// lblCategoryValue control.
         /// </summary>
         /// <remarks>
@@ -121,6 +67,15 @@ namespace Meninx.BookInventory.App.Books
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCategoryValue;
+
+        /// <summary>
+        /// lblMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMessage;
 
         /// <summary>
         /// btnDelete control.
@@ -139,14 +94,5 @@ namespace Meninx.BookInventory.App.Books
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCancel;
-
-        /// <summary>
-        /// lblMessage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMessage;
     }
 }

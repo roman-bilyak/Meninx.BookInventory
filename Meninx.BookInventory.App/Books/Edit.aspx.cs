@@ -24,18 +24,31 @@ namespace Meninx.BookInventory.App.Books
         {
             if (!IsPostBack)
             {
+                if (!Guid.TryParse(Request.QueryString["id"], out Guid bookId))
+                {
+                    throw new Exception("Book not found");
+                }
+
                 await LoadCategories();
 
-                Guid bookId = Guid.Parse(Request.QueryString["id"]);
                 await LoadBook(bookId);
             }
         }
 
         protected async void btnSave_Click(object sender, EventArgs e)
         {
-            Guid bookId = Guid.Parse(Request.QueryString["id"]);
+            if (!Guid.TryParse(Request.QueryString["id"], out Guid bookId))
+            {
+                throw new Exception("Book not found");
+            }
+
             Book book = await _bookRepository.SingleOrDefaultAsync(bookId);
-            if (book != null)
+            if (book == null)
+            {
+                throw new Exception("Book not found");
+            }
+
+            try
             {
                 book.Title = txtTitle.Text;
                 book.Author = txtAuthor.Text;
@@ -46,9 +59,17 @@ namespace Meninx.BookInventory.App.Books
 
                 await _bookRepository.UpdateAsync(book);
                 await _bookRepository.SaveChangesAsync();
-
-                lblMessage.Text = "Book updated successfully!";
+                Response.Redirect("~/Books/List.aspx");
             }
+            catch (Exception ex)
+            {
+                lblMessage.Text = "Error editing the book: " + ex.Message;
+            }
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Books/List.aspx");
         }
 
         #region helper methods
