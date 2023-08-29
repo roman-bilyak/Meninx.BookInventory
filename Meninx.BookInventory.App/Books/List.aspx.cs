@@ -25,6 +25,11 @@ namespace Meninx.BookInventory.App.Books
             }
         }
 
+        protected async void btnSearch_Click(object sender, EventArgs e)
+        {
+            await LoadBooks();
+        }
+
         protected void btnAddBook_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Books/Add.aspx");
@@ -46,7 +51,11 @@ namespace Meninx.BookInventory.App.Books
 
         private async Task LoadBooks()
         {
-            gwBooks.DataSource = await _bookRepository.ListAsync(new Specification<Book>() { });
+            string query = txtSearch.Text.Trim();
+
+            ISpecification<Book> specification = new Specification<Book>()
+                .ApplyQuery(query);
+            gwBooks.DataSource = await _bookRepository.ListAsync(specification);
             gwBooks.DataKeyNames = new string[] { nameof(Book.Id) };
             gwBooks.DataBind();
         }
