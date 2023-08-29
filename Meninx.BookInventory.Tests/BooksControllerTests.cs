@@ -12,7 +12,8 @@ namespace Meninx.BookInventory.Tests
     [TestClass]
     public class BooksControllerTests
     {
-        private Mock<IRepository<Book>> _mockRepository;
+        private Mock<IRepository<Book>> _mockBookRepository;
+        private Mock<IRepository<Category>> _mockCategoryRepository;
 
         private BooksController _controller;
 
@@ -20,8 +21,10 @@ namespace Meninx.BookInventory.Tests
         public void Initialize()
         {
             // Initialize the mock repository and the controller
-            _mockRepository = new Mock<IRepository<Book>>();
-            _controller = new BooksController(_mockRepository.Object);
+            _mockBookRepository = new Mock<IRepository<Book>>();
+            _mockCategoryRepository = new Mock<IRepository<Category>>();
+
+            _controller = new BooksController(_mockBookRepository.Object, _mockCategoryRepository.Object);
         }
 
         [TestMethod]
@@ -30,7 +33,7 @@ namespace Meninx.BookInventory.Tests
             // Arrange
             Guid existingId = Guid.NewGuid();
             Book existingBook = new Book { Id = existingId, Title = "Sample Book" };
-            _mockRepository.Setup(x => x.SingleOrDefaultAsync(existingId, default))
+            _mockBookRepository.Setup(x => x.SingleOrDefaultAsync(existingId, default))
                            .ReturnsAsync(existingBook);
 
             // Act
@@ -48,7 +51,7 @@ namespace Meninx.BookInventory.Tests
         {
             // Arrange
             Guid nonExistingId = Guid.NewGuid();
-            _mockRepository.Setup(repo => repo.SingleOrDefaultAsync(nonExistingId, default))
+            _mockBookRepository.Setup(repo => repo.SingleOrDefaultAsync(nonExistingId, default))
                            .ReturnsAsync((Book)null);
 
             // Act
