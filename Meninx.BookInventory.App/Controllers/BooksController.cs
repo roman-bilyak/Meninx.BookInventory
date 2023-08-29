@@ -6,19 +6,23 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using System.Web.Http.ModelBinding;
 
 namespace Meninx.BookInventory.App.Controllers
 {
     public class BooksController : ApiController
     {
         private readonly IRepository<Book> _bookRepository;
+        private readonly IRepository<Category> _categoryRepository;
 
         public BooksController
         (
-            IRepository<Book> bookRepository
+            IRepository<Book> bookRepository,
+            IRepository<Category> categoryRepository
         )
         {
             _bookRepository = bookRepository;
+            _categoryRepository = categoryRepository;
         }
 
         // GET: api/books
@@ -73,6 +77,15 @@ namespace Meninx.BookInventory.App.Controllers
         [ResponseType(typeof(BookDto))]
         public async Task<IHttpActionResult> PostBookAsync(BookCreateDto bookCreateDto)
         {
+            if (bookCreateDto.CategoryId.HasValue)
+            {
+                Category category = await _categoryRepository.SingleOrDefaultAsync(bookCreateDto.CategoryId.Value);
+                if (category == null)
+                {
+                    ModelState.AddModelError(nameof(BookCreateDto.CategoryId), "Category not found.");
+                }
+            }
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -84,9 +97,9 @@ namespace Meninx.BookInventory.App.Controllers
                 Title = bookCreateDto.Title,
                 Author = bookCreateDto.Author,
                 ISBN = bookCreateDto.ISBN,
-                PublicationYear = bookCreateDto.PublicationYear,
-                Quantity = bookCreateDto.Quantity,
-                CategoryId = bookCreateDto.CategoryId
+                PublicationYear = int.Parse(bookCreateDto.PublicationYear),
+                Quantity = int.Parse(bookCreateDto.Quantity),
+                CategoryId = bookCreateDto.CategoryId.GetValueOrDefault()
             };
 
             await _bookRepository.AddAsync(book);
@@ -110,6 +123,15 @@ namespace Meninx.BookInventory.App.Controllers
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutBookAsync(Guid id, BookUpdateDto bookUpdateDto)
         {
+            if (bookUpdateDto.CategoryId.HasValue)
+            {
+                Category category = await _categoryRepository.SingleOrDefaultAsync(bookUpdateDto.CategoryId.Value);
+                if (category == null)
+                {
+                    ModelState.AddModelError(nameof(BookUpdateDto.CategoryId), "Category not found.");
+                }
+            }
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -124,9 +146,9 @@ namespace Meninx.BookInventory.App.Controllers
             book.Title = bookUpdateDto.Title;
             book.Author = bookUpdateDto.Author;
             book.ISBN = bookUpdateDto.ISBN;
-            book.PublicationYear = bookUpdateDto.PublicationYear;
-            book.Quantity = bookUpdateDto.Quantity;
-            book.CategoryId = bookUpdateDto.CategoryId;
+            book.PublicationYear = int.Parse(bookUpdateDto.PublicationYear);
+            book.Quantity = int.Parse(bookUpdateDto.Quantity);
+            book.CategoryId = bookUpdateDto.CategoryId.GetValueOrDefault();
 
             await _bookRepository.UpdateAsync(book);
             await _bookRepository.SaveChangesAsync();
