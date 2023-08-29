@@ -10,8 +10,8 @@
             Sql(
 @"CREATE PROCEDURE [spGetBooks]
     @Query NVARCHAR(100) = NULL,
-    @Limit INT,
-    @Offset INT,
+    @Limit INT = 100,
+    @Offset INT = 0,
     @SortBy NVARCHAR(50) = 'Id',
     @SortOrder NVARCHAR(4) = 'asc'
 AS

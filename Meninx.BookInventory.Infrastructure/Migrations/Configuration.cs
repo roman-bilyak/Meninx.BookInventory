@@ -7,7 +7,8 @@ namespace Meninx.BookInventory.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(BookInventoryDbContext context)
