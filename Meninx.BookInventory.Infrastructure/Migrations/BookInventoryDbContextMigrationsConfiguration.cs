@@ -3,9 +3,9 @@ using System.Data.Entity.Migrations;
 
 namespace Meninx.BookInventory.Migrations
 {
-    internal sealed class Configuration : DbMigrationsConfiguration<BookInventoryDbContext>
+    public sealed class BookInventoryDbContextMigrationsConfiguration : DbMigrationsConfiguration<BookInventoryDbContext>
     {
-        public Configuration()
+        public BookInventoryDbContextMigrationsConfiguration()
         {
             AutomaticMigrationsEnabled = true;
             AutomaticMigrationDataLossAllowed = true;

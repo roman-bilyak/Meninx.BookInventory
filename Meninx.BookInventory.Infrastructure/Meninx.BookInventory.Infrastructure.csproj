@@ -72,7 +72,7 @@
     <Compile Include="Migrations\202308281313325_AddGetBooksStoredProcedure.designer.cs">
       <DependentUpon>202308281313325_AddGetBooksStoredProcedure.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\BookInventoryDbContextMigrationsConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

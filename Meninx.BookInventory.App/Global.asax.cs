@@ -18,6 +18,7 @@ namespace Meninx.BookInventory.App
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             SwaggerConfig.Register();
+            InfrastructureConfig.Configure();
         }
     }
 }
