@@ -10,10 +10,14 @@ namespace Meninx.BookInventory.App.Books
         private readonly IRepository<Book> _bookRepository;
         private readonly IRepository<Category> _categoryRepository;
 
-        public Add()
+        public Add
+        (
+            IRepository<Book> bookRepository,
+            IRepository<Category> categoryRepository
+        )
         {
-            _bookRepository = new BookRepository(new BookInventoryDbContext());
-            _categoryRepository = new BaseRepository<BookInventoryDbContext, Category>(new BookInventoryDbContext());
+            _bookRepository = bookRepository;
+            _categoryRepository = categoryRepository;
         }
 
         protected async void Page_Load(object sender, EventArgs e)

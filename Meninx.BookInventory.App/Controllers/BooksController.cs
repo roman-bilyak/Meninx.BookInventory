@@ -24,7 +24,7 @@ namespace Meninx.BookInventory.App.Controllers
         // GET: api/books
         public async Task<IHttpActionResult> GetBooksAsync()
         {
-            List<Book> books = await _bookRepository.ListAsync(null);
+            List<Book> books = await _bookRepository.ListAsync(new Specification<Book>());
 
             IEnumerable<BookDto> result = books.Select(x => new BookDto
             {
@@ -37,7 +37,7 @@ namespace Meninx.BookInventory.App.Controllers
                 CategoryId = x.CategoryId
             });
 
-            return Ok(result);
+            return Json(result);
         }
 
         // GET: api/books/{id}
@@ -61,7 +61,7 @@ namespace Meninx.BookInventory.App.Controllers
                 CategoryId = book.CategoryId
             };
 
-            return Ok(result);
+            return Json(result);
         }
 
         // POST: api/books
@@ -98,7 +98,7 @@ namespace Meninx.BookInventory.App.Controllers
                 CategoryId = book.CategoryId
             };
 
-            return Ok(result);
+            return Json(result);
         }
 
         // PUT: api/Books/{id}
@@ -137,7 +137,7 @@ namespace Meninx.BookInventory.App.Controllers
                 CategoryId = book.CategoryId
             };
 
-            return Ok(result);
+            return Json(result);
         }
 
         // DELETE: api/books/{id}

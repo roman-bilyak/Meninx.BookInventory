@@ -11,7 +11,9 @@
 @"CREATE PROCEDURE [spGetBooks]
     @Query NVARCHAR(100) = NULL,
     @Limit INT,
-    @Offset INT
+    @Offset INT,
+    @SortBy NVARCHAR(50) = 'Id',
+    @SortOrder NVARCHAR(4) = 'asc'
 AS
 BEGIN
     SET NOCOUNT ON;
