@@ -1,8 +1,9 @@
-﻿using Meninx.BookInventory.App.Data;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
+﻿using Meninx.BookInventory.App.Models;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 
@@ -10,105 +11,149 @@ namespace Meninx.BookInventory.App.Controllers
 {
     public class BooksController : ApiController
     {
-        private readonly BookInventoryDbContext db = new BookInventoryDbContext();
+        private readonly IRepository<Book> _bookRepository;
+
+        public BooksController
+        (
+            IRepository<Book> bookRepository
+        )
+        {
+            _bookRepository = bookRepository;
+        }
 
         // GET: api/books
-        public IQueryable<Book> GetBooks()
+        public async Task<IHttpActionResult> GetBooksAsync()
         {
-            return db.Books;
+            List<Book> books = await _bookRepository.ListAsync(null);
+
+            IEnumerable<BookDto> result = books.Select(x => new BookDto
+            {
+                Id = x.Id,
+                Title = x.Title,
+                Author = x.Author,
+                ISBN = x.ISBN,
+                PublicationYear = x.PublicationYear,
+                Quantity = x.Quantity,
+                CategoryId = x.CategoryId
+            });
+
+            return Ok(result);
         }
 
         // GET: api/books/{id}
-        [ResponseType(typeof(Book))]
-        public IHttpActionResult GetBook(int id)
+        [ResponseType(typeof(BookDto))]
+        public async Task<IHttpActionResult> GetBookAsync(Guid id)
         {
-            Book book = db.Books.Find(id);
+            Book book = await _bookRepository.SingleOrDefaultAsync(id);
             if (book == null)
             {
                 return NotFound();
             }
 
-            return Ok(book);
+            BookDto result = new BookDto
+            {
+                Id = book.Id,
+                Title = book.Title,
+                Author = book.Author,
+                ISBN = book.ISBN,
+                PublicationYear = book.PublicationYear,
+                Quantity = book.Quantity,
+                CategoryId = book.CategoryId
+            };
+
+            return Ok(result);
+        }
+
+        // POST: api/books
+        [ResponseType(typeof(BookDto))]
+        public async Task<IHttpActionResult> PostBookAsync(BookCreateDto bookCreateDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            Book book = new Book
+            {
+                Id = Guid.NewGuid(),
+                Title = bookCreateDto.Title,
+                Author = bookCreateDto.Author,
+                ISBN = bookCreateDto.ISBN,
+                PublicationYear = bookCreateDto.PublicationYear,
+                Quantity = bookCreateDto.Quantity,
+                CategoryId = bookCreateDto.CategoryId
+            };
+
+            await _bookRepository.AddAsync(book);
+            await _bookRepository.SaveChangesAsync();
+
+            BookDto result = new BookDto
+            {
+                Id = book.Id,
+                Title = book.Title,
+                Author = book.Author,
+                ISBN = book.ISBN,
+                PublicationYear = book.PublicationYear,
+                Quantity = book.Quantity,
+                CategoryId = book.CategoryId
+            };
+
+            return Ok(result);
         }
 
         // PUT: api/Books/{id}
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutBook(int id, Book book)
+        public async Task<IHttpActionResult> PutBookAsync(Guid id, BookUpdateDto bookUpdateDto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != book.Id)
-            {
-                return BadRequest();
-            }
-
-            db.Entry(book).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!BookExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
-        }
-
-        // POST: api/books
-        [ResponseType(typeof(Book))]
-        public IHttpActionResult PostBook(Book book)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            db.Books.Add(book);
-            db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = book.Id }, book);
-        }
-
-        // DELETE: api/books/{id}
-        [ResponseType(typeof(Book))]
-        public IHttpActionResult DeleteBook(int id)
-        {
-            Book book = db.Books.Find(id);
+            Book book = await _bookRepository.SingleOrDefaultAsync(id);
             if (book == null)
             {
                 return NotFound();
             }
 
-            db.Books.Remove(book);
-            db.SaveChanges();
+            book.Title = bookUpdateDto.Title;
+            book.Author = bookUpdateDto.Author;
+            book.ISBN = bookUpdateDto.ISBN;
+            book.PublicationYear = bookUpdateDto.PublicationYear;
+            book.Quantity = bookUpdateDto.Quantity;
+            book.CategoryId = bookUpdateDto.CategoryId;
 
-            return Ok(book);
-        }
+            await _bookRepository.UpdateAsync(book);
+            await _bookRepository.SaveChangesAsync();
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
+            BookDto result = new BookDto
             {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
+                Id = book.Id,
+                Title = book.Title,
+                Author = book.Author,
+                ISBN = book.ISBN,
+                PublicationYear = book.PublicationYear,
+                Quantity = book.Quantity,
+                CategoryId = book.CategoryId
+            };
+
+            return Ok(result);
         }
 
-        private bool BookExists(int id)
+        // DELETE: api/books/{id}
+        [ResponseType(typeof(BookDto))]
+        public async Task<IHttpActionResult> DeleteBookAsync(Guid id)
         {
-            return db.Books.Count(e => e.Id == id) > 0;
+            Book book = await _bookRepository.SingleOrDefaultAsync(id);
+            if (book == null)
+            {
+                return NotFound();
+            }
+
+            await _bookRepository.DeleteAsync(book);
+            await _bookRepository.SaveChangesAsync();
+
+            return StatusCode(HttpStatusCode.NoContent);
         }
     }
 }
