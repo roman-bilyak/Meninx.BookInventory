@@ -4,9 +4,9 @@
     {
         string Query { get; }
 
-        int Limit { get; }
+        int? Limit { get; }
 
-        int Offset { get; }
+        int? Offset { get; }
 
         string SortBy { get; }
 
@@ -14,7 +14,7 @@
 
         ISpecification<T> ApplyQuery(string query);
 
-        ISpecification<T> ApplyPaging(int limit, int offset);
+        ISpecification<T> ApplyPaging(int? limit, int? offset);
 
         ISpecification<T> ApplySorting(string sortBy, string sortOrder);
     }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,11 +16,11 @@ namespace Meninx.BookInventory
             return await _dbContext.Database.SqlQuery<Book>("spGetBooks @Query, @Limit, @Offset, @SortBy, @SortOrder",
                 new SqlParameter[]
                 {
-                    new SqlParameter("@Query", (object)specification.Query ?? DBNull.Value),
-                    new SqlParameter("@Limit", specification.Limit),
-                    new SqlParameter("@Offset", specification.Offset),
-                    new SqlParameter("@SortBy", (object)specification.SortBy ?? DBNull.Value),
-                    new SqlParameter("@SortOrder", (object)specification.SortOrder ?? DBNull.Value)
+                    new SqlParameter("@Query", specification.Query ?? ""),
+                    new SqlParameter("@Limit", specification.Limit ?? 100),
+                    new SqlParameter("@Offset", specification.Offset ?? 0),
+                    new SqlParameter("@SortBy", specification.SortBy ?? nameof(Book.Id)),
+                    new SqlParameter("@SortOrder", specification.SortOrder ?? "ASC")
                 })
                 .ToListAsync();
         }

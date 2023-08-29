@@ -5,9 +5,9 @@
     {
         public string Query { get; private set; }
 
-        public int Limit { get; private set; }
+        public int? Limit { get; private set; }
 
-        public int Offset { get; private set; }
+        public int? Offset { get; private set; }
 
         public string SortBy { get; private set; }
 
@@ -25,7 +25,7 @@
             return this;
         }
 
-        public ISpecification<T> ApplyPaging(int limit, int offset)
+        public ISpecification<T> ApplyPaging(int? limit, int? offset)
         {
             Limit = limit;
             Offset = offset;

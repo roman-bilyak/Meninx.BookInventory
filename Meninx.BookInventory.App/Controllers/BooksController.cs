@@ -22,7 +22,14 @@ namespace Meninx.BookInventory.App.Controllers
         }
 
         // GET: api/books
-        public async Task<IHttpActionResult> GetBooksAsync(string query, int limit, int offset, string sortBy, string sortOrder)
+        public async Task<IHttpActionResult> GetBooksAsync
+        (
+            string query = null,
+            int? limit = null,
+            int? offset = null,
+            string sortBy = null,
+            string sortOrder = null
+        )
         {
             ISpecification<Book> specification = new Specification<Book>()
                 .ApplyQuery(query)
