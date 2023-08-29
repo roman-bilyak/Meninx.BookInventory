@@ -270,6 +270,7 @@
     <Compile Include="Models\BookCreateDto.cs" />
     <Compile Include="Models\BookDto.cs" />
     <Compile Include="Models\BookUpdateDto.cs" />
+    <Compile Include="Models\GetBooksRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

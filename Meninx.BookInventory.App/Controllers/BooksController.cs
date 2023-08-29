@@ -1,6 +1,7 @@
 ﻿using Meninx.BookInventory.App.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -22,19 +23,12 @@ namespace Meninx.BookInventory.App.Controllers
         }
 
         // GET: api/books
-        public async Task<IHttpActionResult> GetBooksAsync
-        (
-            string query = null,
-            int? limit = null,
-            int? offset = null,
-            string sortBy = null,
-            string sortOrder = null
-        )
+        public async Task<IHttpActionResult> GetBooksAsync([FromUri(Name = "")] GetBooksRequest request)
         {
             ISpecification<Book> specification = new Specification<Book>()
-                .ApplyQuery(query)
-                .ApplyPaging(limit, offset)
-                .ApplySorting(sortBy, sortOrder);
+                .ApplyQuery(request.Query)
+                .ApplyPaging(request.Limit, request.Offset)
+                .ApplySorting(request.SortBy, request.SortOrder);
 
             List<Book> books = await _bookRepository.ListAsync(specification);
 
