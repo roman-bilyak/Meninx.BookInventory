@@ -46,7 +46,7 @@ namespace Meninx.BookInventory.App.Books
                 await _bookRepository.AddAsync(book);
                 await _bookRepository.SaveChangesAsync();
 
-                Response.Redirect("~/Books/List.aspx");
+                Response.Redirect("List.aspx");
             }
             catch (Exception ex)
             {
@@ -56,7 +56,7 @@ namespace Meninx.BookInventory.App.Books
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Books/List.aspx");
+            Response.Redirect("List.aspx");
         }
 
         #region helper methods
