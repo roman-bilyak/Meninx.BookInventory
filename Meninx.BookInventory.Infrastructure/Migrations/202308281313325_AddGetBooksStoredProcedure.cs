@@ -21,7 +21,7 @@ BEGIN
     DECLARE @WhereCondition NVARCHAR(MAX) = N'1 = 1'
     IF @Query IS NOT NULL AND LTRIM(RTRIM(@Query)) <> ''
     BEGIN
-        SET @WhereCondition = N'CONTAINS(([Title], [Author], [ISBN]), @Query)'
+        SET @WhereCondition = N'FREETEXT(([Title], [Author], [ISBN]), @Query)'
     END
 
     DECLARE @OrderBy NVARCHAR(100)
