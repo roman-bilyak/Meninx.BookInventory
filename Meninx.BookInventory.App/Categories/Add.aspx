@@ -6,7 +6,7 @@
 
         <asp:ValidationSummary ID="vsSave" runat="server" CssClass="form-error" />
 
-        <label class="form-label" for="txtName">Name</label>
+        <label class="form-label" for="txtName">Name<span class="required-field">*</span></label>
         <asp:TextBox ID="txtName" runat="server" CssClass="form-input" />
         <asp:RequiredFieldValidator ID="txtNameRequiredFieldValidator" runat="server" ControlToValidate="txtName" Display="None" ErrorMessage="Name is required." />
         <asp:RegularExpressionValidator ID="txtNameRegularExpressionValidator" runat="server" ControlToValidate="txtName" ValidationExpression="^.{1,100}$" Display="None" ErrorMessage="Name can have a maximum of 100 characters." />

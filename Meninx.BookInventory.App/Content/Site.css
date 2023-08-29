@@ -143,3 +143,9 @@
     color: #333;
     border: 1px solid #ccc;
 }
+
+.required-field {
+    color: red;
+    font-weight: bold;
+    margin-left: 5px;
+}

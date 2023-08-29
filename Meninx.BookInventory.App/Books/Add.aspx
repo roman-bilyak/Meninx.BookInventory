@@ -6,32 +6,32 @@
 
         <asp:ValidationSummary ID="vsSave" runat="server" CssClass="form-error" />
 
-        <label class="form-label" for="txtTitle">Title</label>
+        <label class="form-label" for="txtTitle">Title<span class="required-field">*</span></label>
         <asp:TextBox ID="txtTitle" runat="server" CssClass="form-input" />
         <asp:RequiredFieldValidator ID="txtTitleRequiredFieldValidator" runat="server" ControlToValidate="txtTitle" Display="None" ErrorMessage="Title is required." />
         <asp:RegularExpressionValidator ID="txtTitleRegularExpressionValidator" runat="server" ControlToValidate="txtTitle" ValidationExpression="^.{1,255}$" Display="None" ErrorMessage="Title can have a maximum of 255 characters." />
 
-        <label class="form-label" for="txtAuthor">Author</label>
+        <label class="form-label" for="txtAuthor">Author<span class="required-field">*</span></label>
         <asp:TextBox ID="txtAuthor" runat="server" CssClass="form-input" />
         <asp:RequiredFieldValidator ID="txtAuthorRequiredFieldValidator" runat="server" ControlToValidate="txtAuthor" Display="None" ErrorMessage="Author is required." />
         <asp:RegularExpressionValidator ID="txtAuthorRegularExpressionValidator" runat="server" ControlToValidate="txtAuthor" ValidationExpression="^.{1,255}$" Display="None" ErrorMessage="Author can have a maximum of 255 characters." />
 
-        <label class="form-label" for="txtISBN">ISBN</label>
+        <label class="form-label" for="txtISBN">ISBN<span class="required-field">*</span></label>
         <asp:TextBox ID="txtISBN" runat="server" CssClass="form-input" />
         <asp:RequiredFieldValidator ID="txtISBNRequiredFieldValidator" runat="server" ControlToValidate="txtISBN" Display="None" ErrorMessage="ISBN is required." />
         <asp:RegularExpressionValidator ID="txtISBNRegularExpressionValidator" runat="server" ControlToValidate="txtISBN" Display="None" ErrorMessage="Invalid ISBN format." ValidationExpression="^.{1,20}$" />
 
-        <label class="form-label" for="txtPublicationYear">Publication Year</label>
+        <label class="form-label" for="txtPublicationYear">Publication Year<span class="required-field">*</span></label>
         <asp:TextBox ID="txtPublicationYear" runat="server" CssClass="form-input" />
         <asp:RequiredFieldValidator ID="txtPublicationYearRequiredFieldValidator" runat="server" ControlToValidate="txtPublicationYear" Display="None" ErrorMessage="Publication Year is required." />
         <asp:RegularExpressionValidator ID="txtPublicationYearRegularExpressionValidator" runat="server" ControlToValidate="txtPublicationYear" Display="None" ErrorMessage="Publication Year must be a valid year." ValidationExpression="^\d{1,4}$" />
 
-        <label class="form-label" for="txtQuantity">Quantity</label>
+        <label class="form-label" for="txtQuantity">Quantity<span class="required-field">*</span></label>
         <asp:TextBox ID="txtQuantity" runat="server" CssClass="form-input" />
         <asp:RequiredFieldValidator ID="txtQuantityRequiredFieldValidator" runat="server" ControlToValidate="txtQuantity" Display="None" ErrorMessage="Quantity is required." />
         <asp:RegularExpressionValidator ID="txtQuantityRegularExpressionValidator" runat="server" ControlToValidate="txtQuantity" Display="None" ErrorMessage="Quantity must be a non-negative integer." ValidationExpression="^\d+$" />
 
-        <label class="form-label" for="ddlCategory">Category</label>
+        <label class="form-label" for="ddlCategory">Category<span class="required-field">*</span></label>
         <asp:DropDownList ID="ddlCategory" runat="server" CssClass="form-input" />
         <asp:RequiredFieldValidator ID="ddlCategoryRequiredFieldValidator" runat="server" ControlToValidate="ddlCategory" Display="None" InitialValue="" ErrorMessage="Category is required." />
 
