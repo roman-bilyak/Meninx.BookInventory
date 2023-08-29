@@ -17,7 +17,7 @@ namespace Meninx.BookInventory
             Property(x => x.Quantity).IsRequired();
             Property(x => x.CategoryId).IsRequired();
 
-            HasRequired(x => x.Category).WithMany().HasForeignKey(x => x.CategoryId);
+            HasRequired(x => x.Category).WithMany().HasForeignKey(x => x.CategoryId).WillCascadeOnDelete(false);
         }
     }
 }

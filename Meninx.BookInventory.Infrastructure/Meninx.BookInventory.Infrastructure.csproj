@@ -72,6 +72,10 @@
     <Compile Include="Migrations\202308281313325_AddGetBooksStoredProcedure.designer.cs">
       <DependentUpon>202308281313325_AddGetBooksStoredProcedure.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202308292155363_DisableCategoryCascadeOnDelete.cs" />
+    <Compile Include="Migrations\202308292155363_DisableCategoryCascadeOnDelete.designer.cs">
+      <DependentUpon>202308292155363_DisableCategoryCascadeOnDelete.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\BookInventoryDbContextMigrationsConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -101,6 +105,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202308281313325_AddGetBooksStoredProcedure.resx">
       <DependentUpon>202308281313325_AddGetBooksStoredProcedure.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308292155363_DisableCategoryCascadeOnDelete.resx">
+      <DependentUpon>202308292155363_DisableCategoryCascadeOnDelete.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
