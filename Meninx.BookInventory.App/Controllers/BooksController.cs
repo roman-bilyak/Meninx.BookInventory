@@ -90,46 +90,53 @@ namespace Meninx.BookInventory.App.Controllers
         [ResponseType(typeof(BookDto))]
         public async Task<IHttpActionResult> PostBookAsync(BookCreateDto bookCreateDto)
         {
-            if (bookCreateDto.CategoryId.HasValue)
+            try
             {
-                Category category = await _categoryRepository.SingleOrDefaultAsync(bookCreateDto.CategoryId.Value);
-                if (category == null)
+                if (bookCreateDto.CategoryId.HasValue)
                 {
-                    ModelState.AddModelError(nameof(BookCreateDto.CategoryId), "Category not found.");
+                    Category category = await _categoryRepository.SingleOrDefaultAsync(bookCreateDto.CategoryId.Value);
+                    if (category == null)
+                    {
+                        ModelState.AddModelError(nameof(BookCreateDto.CategoryId), "Category not found.");
+                    }
                 }
+
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
+                Book book = new Book
+                {
+                    Id = Guid.NewGuid(),
+                    Title = bookCreateDto.Title,
+                    Author = bookCreateDto.Author,
+                    ISBN = bookCreateDto.ISBN,
+                    PublicationYear = int.Parse(bookCreateDto.PublicationYear),
+                    Quantity = int.Parse(bookCreateDto.Quantity),
+                    CategoryId = bookCreateDto.CategoryId.GetValueOrDefault()
+                };
+
+                book = await _bookRepository.AddAsync(book);
+                await _bookRepository.SaveChangesAsync();
+
+                BookDto result = new BookDto
+                {
+                    Id = book.Id,
+                    Title = book.Title,
+                    Author = book.Author,
+                    ISBN = book.ISBN,
+                    PublicationYear = book.PublicationYear,
+                    Quantity = book.Quantity,
+                    CategoryId = book.CategoryId
+                };
+
+                return Json(result);
             }
-
-            if (!ModelState.IsValid)
+            catch (Exception ex)
             {
-                return BadRequest(ModelState);
+                return InternalServerError(ex);
             }
-
-            Book book = new Book
-            {
-                Id = Guid.NewGuid(),
-                Title = bookCreateDto.Title,
-                Author = bookCreateDto.Author,
-                ISBN = bookCreateDto.ISBN,
-                PublicationYear = int.Parse(bookCreateDto.PublicationYear),
-                Quantity = int.Parse(bookCreateDto.Quantity),
-                CategoryId = bookCreateDto.CategoryId.GetValueOrDefault()
-            };
-
-            await _bookRepository.AddAsync(book);
-            await _bookRepository.SaveChangesAsync();
-
-            BookDto result = new BookDto
-            {
-                Id = book.Id,
-                Title = book.Title,
-                Author = book.Author,
-                ISBN = book.ISBN,
-                PublicationYear = book.PublicationYear,
-                Quantity = book.Quantity,
-                CategoryId = book.CategoryId
-            };
-
-            return Json(result);
         }
 
         // PUT: api/Books/{id}
