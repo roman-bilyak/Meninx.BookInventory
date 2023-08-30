@@ -6,7 +6,6 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
-using System.Web.Http.ModelBinding;
 
 namespace Meninx.BookInventory.App.Controllers
 {
