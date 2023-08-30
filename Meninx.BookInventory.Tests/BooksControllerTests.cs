@@ -61,8 +61,8 @@ namespace Meninx.BookInventory.Tests
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType<JsonResult<IEnumerable<BookDto>>>(result);
 
-            IEnumerable<BookDto> dtos = (result as JsonResult<IEnumerable<BookDto>>).Content;
-            Assert.AreEqual(0, dtos.Count());
+            IEnumerable<BookDto> dto = (result as JsonResult<IEnumerable<BookDto>>).Content;
+            Assert.AreEqual(0, dto.Count());
         }
 
         [TestMethod]
@@ -120,8 +120,8 @@ namespace Meninx.BookInventory.Tests
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType<JsonResult<IEnumerable<BookDto>>>(result);
 
-            IEnumerable<BookDto> dtos = (result as JsonResult<IEnumerable<BookDto>>).Content;
-            Assert.AreEqual(2, dtos.Count());
+            IEnumerable<BookDto> dto = (result as JsonResult<IEnumerable<BookDto>>).Content;
+            Assert.AreEqual(2, dto.Count());
         }
 
         [TestMethod]
