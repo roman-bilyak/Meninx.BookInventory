@@ -279,6 +279,19 @@ namespace Meninx.BookInventory.Tests
         }
 
         [TestMethod]
+        public async Task PostBook_WhenInvalidData_ReturnError()
+        {
+            // Arrange
+            BookCreateDto bookCreateDto = new BookCreateDto();
+
+            // Act
+            IHttpActionResult result = await _controller.PostBookAsync(bookCreateDto);
+
+            // Assert
+            Assert.IsInstanceOfType<ExceptionResult>(result);
+        }
+
+        [TestMethod]
         public async Task PostBook_WhenInvalidCategory_ReturnBadRequest()
         {
             // Arrange
