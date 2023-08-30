@@ -27,49 +27,63 @@ namespace Meninx.BookInventory.App.Controllers
         // GET: api/books
         public async Task<IHttpActionResult> GetBooksAsync([FromUri(Name = "")] GetBooksRequest request)
         {
-            ISpecification<Book> specification = new Specification<Book>()
-                .ApplyQuery(request.Query)
-                .ApplyPaging(request.Limit, request.Offset)
-                .ApplySorting(request.SortBy, request.SortOrder);
-
-            List<Book> books = await _bookRepository.ListAsync(specification);
-
-            IEnumerable<BookDto> result = books.Select(x => new BookDto
+            try
             {
-                Id = x.Id,
-                Title = x.Title,
-                Author = x.Author,
-                ISBN = x.ISBN,
-                PublicationYear = x.PublicationYear,
-                Quantity = x.Quantity,
-                CategoryId = x.CategoryId
-            });
+                ISpecification<Book> specification = new Specification<Book>()
+                    .ApplyQuery(request.Query)
+                    .ApplyPaging(request.Limit, request.Offset)
+                    .ApplySorting(request.SortBy, request.SortOrder);
 
-            return Json(result);
+                List<Book> books = await _bookRepository.ListAsync(specification);
+
+                IEnumerable<BookDto> result = books.Select(x => new BookDto
+                {
+                    Id = x.Id,
+                    Title = x.Title,
+                    Author = x.Author,
+                    ISBN = x.ISBN,
+                    PublicationYear = x.PublicationYear,
+                    Quantity = x.Quantity,
+                    CategoryId = x.CategoryId
+                });
+
+                return Json(result);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
 
         // GET: api/books/{id}
         [ResponseType(typeof(BookDto))]
         public async Task<IHttpActionResult> GetBookAsync(Guid id)
         {
-            Book book = await _bookRepository.SingleOrDefaultAsync(id);
-            if (book == null)
+            try
             {
-                return NotFound();
+                Book book = await _bookRepository.SingleOrDefaultAsync(id);
+                if (book == null)
+                {
+                    return NotFound();
+                }
+
+                BookDto result = new BookDto
+                {
+                    Id = book.Id,
+                    Title = book.Title,
+                    Author = book.Author,
+                    ISBN = book.ISBN,
+                    PublicationYear = book.PublicationYear,
+                    Quantity = book.Quantity,
+                    CategoryId = book.CategoryId
+                };
+
+                return Json(result);
             }
-
-            BookDto result = new BookDto
+            catch (Exception ex)
             {
-                Id = book.Id,
-                Title = book.Title,
-                Author = book.Author,
-                ISBN = book.ISBN,
-                PublicationYear = book.PublicationYear,
-                Quantity = book.Quantity,
-                CategoryId = book.CategoryId
-            };
-
-            return Json(result);
+                return InternalServerError(ex);
+            }
         }
 
         // POST: api/books

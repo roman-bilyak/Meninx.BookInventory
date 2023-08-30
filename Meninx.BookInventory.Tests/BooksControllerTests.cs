@@ -42,7 +42,7 @@ namespace Meninx.BookInventory.Tests
 
             List<Book> expectedBooks = new List<Book>();
 
-            _mockBookRepository.Setup(repo => repo.ListAsync(It.IsAny<ISpecification<Book>>(), default))
+            _mockBookRepository.Setup(x => x.ListAsync(It.IsAny<ISpecification<Book>>(), default))
                 .Callback((ISpecification<Book> spec, CancellationToken cancellationToken) =>
                 {
                     Assert.AreEqual(request.Query, spec.Query);
@@ -58,10 +58,10 @@ namespace Meninx.BookInventory.Tests
 
             // Assert
             Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result, typeof(JsonResult<IEnumerable<BookDto>>));
+            Assert.IsInstanceOfType<JsonResult<IEnumerable<BookDto>>>(result);
 
-            var jsonResult = (JsonResult<IEnumerable<BookDto>>)result;
-            Assert.AreEqual(0, jsonResult.Content.Count());
+            IEnumerable<BookDto> dto = (result as JsonResult<IEnumerable<BookDto>>).Content;
+            Assert.AreEqual(0, dto.Count());
         }
 
         [TestMethod]
@@ -101,7 +101,7 @@ namespace Meninx.BookInventory.Tests
                 }
             };
 
-            _mockBookRepository.Setup(repo => repo.ListAsync(It.IsAny<ISpecification<Book>>(), default))
+            _mockBookRepository.Setup(x => x.ListAsync(It.IsAny<ISpecification<Book>>(), default))
                 .Callback((ISpecification<Book> spec, CancellationToken cancellationToken) =>
                 {
                     Assert.AreEqual(request.Query, spec.Query);
@@ -117,10 +117,102 @@ namespace Meninx.BookInventory.Tests
 
             // Assert
             Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result, typeof(JsonResult<IEnumerable<BookDto>>));
+            Assert.IsInstanceOfType<JsonResult<IEnumerable<BookDto>>>(result);
 
-            var jsonResult = (JsonResult<IEnumerable<BookDto>>)result;
-            Assert.AreEqual(2, jsonResult.Content.Count());
+            IEnumerable<BookDto> dto = (result as JsonResult<IEnumerable<BookDto>>).Content;
+            Assert.AreEqual(2, dto.Count());
+        }
+
+        [TestMethod]
+        public async Task GetBooksAsync_WhenRepositoryFails_ReturnInternalServerError()
+        {
+            // Arrange
+            var request = new GetBooksRequest
+            {
+                Query = "some query",
+                Limit = 10,
+                Offset = 0,
+                SortBy = "Title",
+                SortOrder = "Asc"
+            };
+
+            _mockBookRepository.Setup(repo => repo.ListAsync(It.IsAny<ISpecification<Book>>(), default))
+                             .ThrowsAsync(new Exception("Internal server error"));
+
+            // Act
+            IHttpActionResult result = await _controller.GetBooksAsync(request);
+
+            // Assert
+            Assert.IsInstanceOfType<ExceptionResult>(result);
+        }
+
+        [TestMethod]
+        public async Task GetBookAsync_WhenBookExists_ReturnBookDto()
+        {
+            // Arrange
+            Guid bookId = Guid.NewGuid();
+            Book expectedBook = new Book
+            {
+                Id = bookId,
+                Title = "Book 1",
+                Author = "Author 1",
+                ISBN = "123456789",
+                PublicationYear = 2023,
+                Quantity = 5,
+                CategoryId = Guid.NewGuid()
+            };
+
+            _mockBookRepository.Setup(x => x.SingleOrDefaultAsync(bookId, default))
+                             .ReturnsAsync(expectedBook);
+
+            // Act
+            IHttpActionResult result = await _controller.GetBookAsync(bookId);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType<JsonResult<BookDto>>(result);
+
+            BookDto dto = (result as JsonResult<BookDto>).Content;
+            Assert.AreEqual(expectedBook.Id, dto.Id);
+            Assert.AreEqual(expectedBook.Title, dto.Title);
+            Assert.AreEqual(expectedBook.Author, dto.Author);
+            Assert.AreEqual(expectedBook.ISBN, dto.ISBN);
+            Assert.AreEqual(expectedBook.PublicationYear, dto.PublicationYear);
+            Assert.AreEqual(expectedBook.Quantity, dto.Quantity);
+            Assert.AreEqual(expectedBook.CategoryId, dto.CategoryId);
+        }
+
+        [TestMethod]
+        public async Task GetBookAsync_WhenBookDoesNotExist_ReturnNotFound()
+        {
+            // Arrange
+            Guid nonExistentBookId = Guid.NewGuid();
+
+            _mockBookRepository.Setup(repo => repo.SingleOrDefaultAsync(nonExistentBookId, default))
+                             .ReturnsAsync((Book)null);
+
+            // Act
+            IHttpActionResult result = await _controller.GetBookAsync(nonExistentBookId);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType<NotFoundResult>(result);
+        }
+
+        [TestMethod]
+        public async Task GetBookAsync_WhenRepositoryThrowsException_ReturnInternalServerError()
+        {
+            // Arrange
+            Guid bookId = Guid.NewGuid();
+
+            _mockBookRepository.Setup(repo => repo.SingleOrDefaultAsync(bookId, default))
+                             .ThrowsAsync(new Exception("Internal server error"));
+
+            // Act
+            IHttpActionResult result = await _controller.GetBookAsync(bookId);
+
+            // Assert
+            Assert.IsInstanceOfType<ExceptionResult>(result);
         }
     }
 }
