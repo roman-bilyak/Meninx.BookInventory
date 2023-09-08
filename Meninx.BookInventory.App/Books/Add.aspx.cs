@@ -8,12 +8,12 @@ namespace Meninx.BookInventory.App.Books
     public partial class Add : Page
     {
         private readonly IRepository<Book> _bookRepository;
-        private readonly IRepository<Category> _categoryRepository;
+        private readonly IReadRepository<Category> _categoryRepository;
 
         public Add
         (
             IRepository<Book> bookRepository,
-            IRepository<Category> categoryRepository
+            IReadRepository<Category> categoryRepository
         )
         {
             _bookRepository = bookRepository;

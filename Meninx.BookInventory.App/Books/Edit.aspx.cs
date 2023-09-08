@@ -8,12 +8,12 @@ namespace Meninx.BookInventory.App.Books
     public partial class Edit : Page
     {
         private readonly IRepository<Book> _bookRepository;
-        private readonly IRepository<Category> _categoryRepository;
+        private readonly IReadRepository<Category> _categoryRepository;
 
         public Edit
         (
-            IRepository<Book> bookRepository, 
-            IRepository<Category> categoryRepository
+            IRepository<Book> bookRepository,
+            IReadRepository<Category> categoryRepository
         )
         {
             _bookRepository = bookRepository;
